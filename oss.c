@@ -93,6 +93,9 @@ struct PCB{
     pid_t pid; //process id of child
     int startSeconds; //time when it was forked
     int startNano; //time when it was forked
+    int blocked;
+    int eventBlockedUntilSec;
+    int eventBlockedUntilNano;
 };
 
 int *sharedSeconds;
@@ -194,7 +197,7 @@ void incrementClock(int *seconds, int *nano){
          (*seconds)++;
     }
 }
-
+/*
 int nextChild(int currentChild, struct PCB processTable[20]){
     currentChild++;
     while(processTable[currentChild].occupied == 0){
@@ -205,6 +208,29 @@ int nextChild(int currentChild, struct PCB processTable[20]){
     }
     return currentChild;
 }
+*/
+
+int nextChild(struct Queue* q0, struct Queue* q1, struct Queue* q2){
+    int returnValue;
+    if((q0->front != NULL)){
+        returnValue = (q0->front)->key;
+        return returnValue;
+    }    
+    else if((q1->front != NULL)){
+        returnValue = (q0->front)->key;
+        return returnValue;
+    }
+
+    else if((q2->front != NULL)){
+        returnValue = (q0->front)->key;
+        return returnValue;
+    }
+    else return -1;
+}
+
+
+
+
 
 int main(int argc, char* argv[]){
  
@@ -335,6 +361,13 @@ int main(int argc, char* argv[]){
     int currentChild = 0;
     int randSecondLimit;
     int randNanoLimit;
+    
+    struct Queue* q0 = createQueue(); //Highest priority queue (10ms)
+    struct Queue* q1 = createQueue(); // (20 ms)
+    struct Queue* q2 = createQueue(); //Lowest priority queue (40 ms)
+
+
+    
 
     while(childrenFinishedCount < options.proc){
        
@@ -346,11 +379,11 @@ int main(int argc, char* argv[]){
             printProcessTable(getpid(), *sharedSeconds, *sharedNano, processTable);
             fprintProcessTable(getpid(), *sharedSeconds, *sharedNano, processTable, fptr);
         }
-
+        
         //Calculate Next child
         if(simulCount > 0){
-            currentChild = nextChild(currentChild, processTable);
-            
+            //currentChild = nextChild(currentChild, processTable);
+            currentChild = nextChild(q0, q1, q2);
             //Send message to child
             
             buff.mtype = processTable[currentChild].pid;
@@ -360,11 +393,14 @@ int main(int argc, char* argv[]){
                 perror("msgsnd to child failed\n");
                 exit(1);
             }
-           
+            
+
             if(msgrcv(msqid, &buff, sizeof(msgbuffer), getpid(), 0) == -1){
                 perror("failed to receive message in parent\n");
                 exit(1);
             }
+            //TODO IMPLEMENT QUEUE DEQUEUE BEHAVIOR BASED ON REMAINING QUANTA AND Q POSITION566666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666
+              
         }
 
         //Launch Children
@@ -443,8 +479,6 @@ int main(int argc, char* argv[]){
     }
     
    
-    //Close file
-    fclose(fptr);
 
     //Remove message queues 
     if(msgctl(msqid, IPC_RMID, NULL) == -1){
@@ -458,7 +492,10 @@ int main(int argc, char* argv[]){
     shmdt(sharedNano);
     shmctl(shmidSeconds, IPC_RMID, NULL);
     shmctl(shmidNano, IPC_RMID, NULL);
+    
 
+    //Close file
+    fclose(fptr);
     return 0;
     
 }

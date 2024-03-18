@@ -86,24 +86,11 @@ int main(int argc, char** argv){
             perror("Failed to receive message\n");
             exit(1);
         }
-       
-                   
+        
 
-        timeElapsed = *sharedSeconds - sysClockS;
+
         
-        
-        /*
-        if((*sharedSeconds) - timer == 1){
-            timer = *sharedSeconds;
-            printf("WORKER PID: %d PPID: %d SysClockS: %d SysClockNano: %d TermTimeS: %d TermTimeNano: %d\n--%d seconds have passed since starting\n"
-            , pid, ppid, *sharedSeconds, *sharedNano, timeLimitSeconds, timeLimitNano, timeElapsed);
-        }
-        */
-        
-        printf("WORKER PID: %d PPID: %d SysClockS: %d SysClockNano: %d TermTimeS: %d TermTimeNano: %d\n--%d seconds have passed since starting\n"
-            , pid, ppid, *sharedSeconds, *sharedNano, timeLimitSeconds, timeLimitNano, timeElapsed);
-        
-        
+                
         //Send message back to parent
         buff.mtype = ppid;
         buff.intData = pid;  
