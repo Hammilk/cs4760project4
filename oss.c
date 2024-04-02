@@ -142,6 +142,7 @@ typedef struct msgbuffer {
     long mtype;
     char strData[10];
     int intData;
+    int quanta;
 } msgbuffer;
 
 
@@ -259,7 +260,6 @@ int main(int argc, char* argv[]){
             processTable[i].startNano = 0;
     }
 
-
     options_t options;
     options.proc = 1; //n
     options.simul = 1; //s
@@ -370,7 +370,8 @@ int main(int argc, char* argv[]){
     
 
     while(childrenFinishedCount < options.proc){
-       
+    
+
         incrementClock(sharedSeconds, sharedNano);
 
         //Print Table
@@ -389,18 +390,26 @@ int main(int argc, char* argv[]){
             buff.mtype = processTable[currentChild].pid;
             buff.intData = processTable[currentChild].pid;
             strcpy(buff.strData, "Sent");
+           
+            //MESSAGE SEND
             if(msgsnd(msqid, &buff, sizeof(msgbuffer)-sizeof(long), 0) == -1){
                 perror("msgsnd to child failed\n");
                 exit(1);
             }
             
-
+            //MESSAGE RECEIVED  
             if(msgrcv(msqid, &buff, sizeof(msgbuffer), getpid(), 0) == -1){
                 perror("failed to receive message in parent\n");
                 exit(1);
             }
-            //TODO IMPLEMENT QUEUE DEQUEUE BEHAVIOR BASED ON REMAINING QUANTA AND Q POSITION566666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666
-              
+
+            //
+
+            //TODO Implement queue and dequeue behavior
+            //If in queue 0, queue to 1
+            //if in queue 1, queue to 2
+            //if in queue 2, go back to queue 2
+            //if blocked, put in a block queue
         }
 
         //Launch Children
