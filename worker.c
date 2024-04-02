@@ -101,9 +101,6 @@ int main(int argc, char** argv){
     //Defining constant for termination and block chance
     const int terminationChance = atoi(argv[1]);
     const int blockChance = atoi(argv[2]);
-    printf("t: %d\n", atoi(argv[1]));
-    printf("b: %d\n", atoi(argv[2]));
-    printf("lim: %d\n", atoi(argv[3]));
 
     //Define upper bound for child to spent in system
     int timeLimitNano = atoi(argv[3]) + sysClockNano;
@@ -121,41 +118,34 @@ int main(int argc, char** argv){
     
 
     while(timeLimitSeconds > sysClockS || ((timeLimitSeconds == sysClockS) && (timeLimitNano > sysClockNano))){
-        printf("Child work section entered\n");    
         //Receive message...message queue controlling iterations of loops
         if(msgrcv(msqid, &buff, sizeof(msgbuffer), getpid(), 0) == -1){
             perror("Failed to receive message\n");
             exit(1);
         }
-        printf("Child received message\n");
 
         //Calculate termination chance
 
-        if(rand() % 501 <= terminationChance){
+        if(rand() % 201 <= terminationChance){
             quantaPercentage = rand()%101;
-            printf("qP %d\n", quantaPercentage);
             buff.quanta = -(buff.quanta*quantaPercentage/100);
-            printf("Test: Termination\n");
             buff.mtype = ppid;
             buff.intData = pid;
             if(msgsnd(msqid, &buff, sizeof(msgbuffer)-sizeof(long), 0) == -1){
                 perror("msgsnd to parent failed\n");
                 exit(1);
             }
-            printf("buff quanta: %d\n", buff.quanta);
             earlyTerm = 1;
             break;
         }
 
         //Calculate block chance
         
-        else if(rand() % 501 <= blockChance){
+        else if(rand() % 201 <= blockChance){
             quantaPercentage = rand()%101;
             buff.quanta = buff.quanta*quantaPercentage/100;
-            printf("Test: Block\n");
         }
 
-        else printf("Test: Whole\n");
         
         //If child uses entire time quanta, it will default to this.
         //Child will send back the quanta it was sent
@@ -169,7 +159,6 @@ int main(int argc, char** argv){
         }
         printf("Message sent from child\n");
     }
-    printf("Exit child loop\n");
     if(earlyTerm == 0){
         buff.mtype = ppid;
         buff.intData = pid;

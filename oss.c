@@ -103,6 +103,8 @@ int shmidNano;
 
 struct PCB processTable[20];
 
+int msqid;
+
 static void myhandler(int s){
     printf("Got signal, terminated\n");
     for(int i = 0; i < 20; i++){
@@ -110,7 +112,12 @@ static void myhandler(int s){
             kill(processTable[i].pid, SIGTERM);
         }
     }
-  
+    
+    if(msgctl(msqid, IPC_RMID, NULL) == -1){
+        perror("msgctl to get rid of queue in parent failed");
+        exit(1);
+    }
+
     shmdt(sharedSeconds);
     shmdt(sharedNano);
     shmctl(shmidSeconds, IPC_RMID, NULL); 
@@ -265,6 +272,9 @@ int main(int argc, char* argv[]){
             processTable[i].pid = 0;
             processTable[i].startSeconds = 0;
             processTable[i].startNano = 0;
+            processTable[i].blocked = 0;
+            processTable[i].eventBlockedUntilSec = 0;
+            processTable[i].eventBlockedUntilNano = 0;
     }
     
     options_t options;
@@ -315,7 +325,6 @@ int main(int argc, char* argv[]){
     *sharedNano = nano;
 
     //Variables for message queue
-    int msqid;
     key_t key;
     msgbuffer buff;
     buff.mtype = 1;
@@ -371,19 +380,45 @@ int main(int argc, char* argv[]){
     int launchFlag = 0;
     int terminationPercent = 2;
     int blockPercent = 2;
+    int timeSlice = 0;
+
+    //Statistic Variable
+    double idle = 0;
+    double waitTime = 0;
+    double blockTime = 0;
     
     struct Queue* q0 = createQueue(); //Highest priority queue (10ms)
     struct Queue* q1 = createQueue(); // (20 ms)
     struct Queue* q2 = createQueue(); //Lowest priority queue (40 ms)
-
+    struct Queue* blockQueue = createQueue(); //Handles blocked processes
 
 
     while(childrenFinishedCount < options.proc){
         
         //Calculate Next Child
         if(simulCount > 0){ //Skips running if no child has been launched
+            
+            //Check for block queue
+            if((blockQueue -> front) != NULL && simulCount < options.simul){ //Will not add if simultaneous limit is reached
+                int key = (blockQueue -> front) -> key;
+                if(((*sharedSeconds > processTable[key].eventBlockedUntilSec) || (*sharedSeconds == processTable[key].eventBlockedUntilSec)) && 
+                        (*sharedNano > processTable[key].eventBlockedUntilNano)){
+                deQueue(blockQueue);
+                enQueue(q0, key);
+                incrementClock(sharedSeconds, sharedNano, 10000); //Increment for moving from block queue to ready queue
+                fprintf(fptr, "OSS: Process with PID %d was unblocked and placed into the ready queue at time %d:%d\n", processTable[key].pid, *sharedSeconds, *sharedNano);
+                simulCount++;
+
+                //STATISTICS: Block time
+                blockTime += ((*sharedSeconds * pow(10, 9)) + (*sharedNano)) - 
+                    ((processTable[key].eventBlockedUntilSec * pow(10, 9) + processTable[key].eventBlockedUntilNano) - pow(10,9));     
+
+                }
+
+            } 
+            
             //Increment for calculating next child
-            incrementClock(sharedSeconds, sharedNano, 5000);
+            incrementClock(sharedSeconds, sharedNano, 5000); //Increment for scheduling decision
             currentQueue = nextChild(q0, q1, q2);
             
             if(currentQueue == 0){
@@ -400,23 +435,28 @@ int main(int argc, char* argv[]){
                 perror("queue failed");
                 exit(1);
             }
+
+                                    
         }
         //Increments clock by 1000 ns if no children are launched
         else{
-            incrementClock(sharedSeconds, sharedNano, 100000);
+            incrementClock(sharedSeconds, sharedNano, 5*pow(10, 8));
+            //STATISTICS: Idle Time
+            idle += 5*pow(10,8);
         }
 
         if(currentChild >= 0){
             printf("Sending message to child %d\n", currentChild);
         }
-
+        printf("Current Child: %d\n", currentChild);
         //Message Handling
         if(simulCount > 0){
             buff.mtype = processTable[currentChild].pid;
             buff.intData = processTable[currentChild].pid;
-            if(currentQueue == 0) buff.quanta = pow(10, 6);
-            else if(currentQueue == 1) buff.quanta = 2 * pow(10, 6);
-            else if(currentQueue == 2) buff.quanta = 4 * pow(10, 6);
+            if(currentQueue == 0) timeSlice = pow(10, 6);
+            else if(currentQueue == 1) timeSlice = 2 * pow(10, 6);
+            else if(currentQueue == 2) timeSlice = 4 * pow(10, 6);
+            buff.quanta = timeSlice;
             
             fprintf(fptr, "OSS: Dispatching process with PID %d from queue %d at time %d:%d\n", processTable[currentChild].pid, currentQueue, *sharedSeconds, *sharedNano); 
             //Message Sent
@@ -424,10 +464,21 @@ int main(int argc, char* argv[]){
                 perror("msgsnd to child failed\n");
                 exit(1);
             }
-           
-            if(currentQueue == 0) deQueue(q0);
-            else if(currentQueue == 1) deQueue(q1);
-            else if(currentQueue == 2) deQueue(q2);
+            
+            if(currentQueue == 0){
+                deQueue(q0);
+            }               
+
+            
+            else if(currentQueue == 1){
+                deQueue(q1);
+            }
+
+
+            else if(currentQueue == 2){
+               deQueue(q2);
+            }
+
             
 
             
@@ -437,6 +488,11 @@ int main(int argc, char* argv[]){
                 exit(1);
             }
             fprintf(fptr, "OSS: Receiving that process with PID %d ran for %d nanoseconds\n", processTable[currentChild].pid, abs(buff.quanta));
+            //STATISTICS: Wait Time
+            if(simulCount > 1){
+                waitTime += abs(buff.quanta);
+            }
+
             //Increment Clock by Amount Used by Child
             incrementClock(sharedSeconds, sharedNano, abs(buff.quanta));
 
@@ -445,24 +501,55 @@ int main(int argc, char* argv[]){
         
         //If child terminates
         if(buff.quanta < 0){
-            buff.quanta = 0;
             printf("Child %d has decided to terminate\n", currentChild);
             fprintf(fptr, "OSS: Received that process with PID %d terminated at time %d:%d\n", processTable[currentChild].pid, *sharedSeconds, *sharedNano);
             wait(0);
-            printf("Child cleared\n");
             processTable[currentChild].pid = 0;
             processTable[currentChild].occupied = 0;
             processTable[currentChild].startSeconds = 0;
             processTable[currentChild].startNano = 0;
-           
-
+            processTable[currentChild].eventBlockedUntilNano = 0;
+            processTable[currentChild].eventBlockedUntilSec = 0;
+            
+            buff.mtype = 0;
+            buff.intData = 0; 
+            buff.quanta = 0;
             simulCount--;
             childrenFinishedCount++;
         }
-        else{
-            if(currentQueue == 0) enQueue(q1, currentChild);
-            else if(currentQueue == 1) enQueue(q2, currentChild);
-            else if(currentQueue == 2) enQueue(q2, currentChild);
+        //If child is blocked
+        else if(buff.quanta > 0 && buff.quanta < timeSlice){
+            simulCount--;
+            enQueue(blockQueue, currentChild);
+            processTable[currentChild].blocked = 1;
+            processTable[currentChild].eventBlockedUntilNano = (*sharedNano); //Block runs for 1000 ms
+            processTable[currentChild].eventBlockedUntilSec++;
+            fprintf(fptr, "OSS: Recieved that process with PID %d blocked until time %d:%d at time %d:%d\n", processTable[currentChild].pid,
+                   processTable[currentChild].eventBlockedUntilSec, processTable[currentChild].eventBlockedUntilNano, *sharedSeconds, *sharedNano);            
+            buff.mtype = 0;
+            buff.intData = 0; 
+            buff.quanta = 0;
+           
+            
+        }
+
+        else if(simulCount > 0){
+            if(currentQueue == 0){
+                enQueue(q1, currentChild);
+                fprintf(fptr, "OSS: Process with PID %d moved from Queue 0 to Queue 1 at time %d:%d\n", processTable[currentChild].pid, *sharedSeconds, *sharedNano);
+            }
+
+            
+           else if(currentQueue == 1){
+               enQueue(q2, currentChild);
+               fprintf(fptr, "OSS: Process with PID %d moved from Queue 1 to Queue 2 at time %d:%d\n", processTable[currentChild].pid, *sharedSeconds, *sharedNano);          
+           }
+
+           else if(currentQueue == 2){
+               enQueue(q2, currentChild);
+               fprintf(fptr, "OSS: Process with PID %d requeued to Queue 2 at time %d:%d\n", processTable[currentChild].pid, *sharedSeconds, *sharedNano); 
+           }
+
         }
         
        
@@ -535,7 +622,19 @@ int main(int argc, char* argv[]){
             
         }
     }
-   
+    //STATISTICS: Final Report
+    //Average wait time
+    double averageWaitTime = waitTime / options.proc;
+
+    //Average CPU Utilization
+    double cpuUtilization  = idle / ((*sharedSeconds) * pow(10,9) + (*sharedNano));
+
+    //Average block time 
+    double averageBlockTime = blockTime / options.proc;   
+
+    printf("Average Wait Time for %d processes: %f nanoseconds\n", options.proc, averageWaitTime);
+    printf("CPU Utilization: %f\n", cpuUtilization);
+    printf("Average Block Time for %d processes: %f nanoseconds\n", options.proc, averageBlockTime);
 
     //Remove message queues 
     if(msgctl(msqid, IPC_RMID, NULL) == -1){
