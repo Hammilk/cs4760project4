@@ -190,19 +190,15 @@ void incrementClock(int *seconds, int *nano, int increment){
 }
 
 int nextChild(struct Queue* q0, struct Queue* q1, struct Queue* q2){
-    int returnValue;
     if((q0->front != NULL)){
-        returnValue = (q0->front)->key;
-        return returnValue;
+        return 0;
     }    
     else if((q1->front != NULL)){
-        returnValue = (q0->front)->key;
-        return returnValue;
+        return 1;
     }
 
     else if((q2->front != NULL)){
-        returnValue = (q0->front)->key;
-        return returnValue;
+        return 2;
     }
     else return -1;
 }
@@ -369,6 +365,7 @@ int main(int argc, char* argv[]){
     int simulCount = 0;
     int childrenFinishedCount = 0;
     int currentChild = 0;
+    int currentQueue = 0;
     int nextIntervalSeconds;
     int nextIntervalNano;
     int launchFlag = 0;
@@ -387,19 +384,29 @@ int main(int argc, char* argv[]){
         if(simulCount > 0){ //Skips running if no child has been launched
             //Increment for calculating next child
             incrementClock(sharedSeconds, sharedNano, 5000);
-            currentChild = nextChildTest(q0);
-            if(currentChild == -1){
+            currentQueue = nextChild(q0, q1, q2);
+            
+            if(currentQueue == 0){
+                currentChild = (q0->front)->key;
+            }
+            else if(currentQueue == 1){
+                currentChild = (q1->front)->key;
+            }
+            else if(currentQueue == 2){
+                currentChild = (q2->front)->key;
+            }
+            else{
+                printf("queue code %d\n", currentQueue);
                 perror("queue failed");
                 exit(1);
             }
-            printf("Test: SimulCount: %d, currentChild %d\n", simulCount, currentChild);
         }
         //Increments clock by 1000 ns if no children are launched
         else{
             incrementClock(sharedSeconds, sharedNano, 100000);
         }
 
-        if(currentChild > 0){
+        if(currentChild >= 0){
             printf("Sending message to child %d\n", currentChild);
         }
 
@@ -407,17 +414,22 @@ int main(int argc, char* argv[]){
         if(simulCount > 0){
             buff.mtype = processTable[currentChild].pid;
             buff.intData = processTable[currentChild].pid;
-            buff.quanta = 5000000;
+            if(currentQueue == 0) buff.quanta = pow(10, 6);
+            else if(currentQueue == 1) buff.quanta = 2 * pow(10, 6);
+            else if(currentQueue == 2) buff.quanta = 4 * pow(10, 6);
             
-            fprintf(fptr, "OSS: Dispatching process with PID %d from queue 0 at time %d:%d\n", processTable[currentChild].pid, *sharedSeconds, *sharedNano); 
+            fprintf(fptr, "OSS: Dispatching process with PID %d from queue %d at time %d:%d\n", processTable[currentChild].pid, currentQueue, *sharedSeconds, *sharedNano); 
             //Message Sent
             if(msgsnd(msqid, &buff, sizeof(msgbuffer)-sizeof(long), 0) == -1){
                 perror("msgsnd to child failed\n");
                 exit(1);
             }
-            //TODO For now, send child to back of current queue
-            if(simulCount>1)
-            deQueue(q0);
+           
+            if(currentQueue == 0) deQueue(q0);
+            else if(currentQueue == 1) deQueue(q1);
+            else if(currentQueue == 2) deQueue(q2);
+            
+
             
             //Message Received (Blocking)  
             if(msgrcv(msqid, &buff, sizeof(msgbuffer), getpid(), 0) == -1){
@@ -447,11 +459,15 @@ int main(int argc, char* argv[]){
             simulCount--;
             childrenFinishedCount++;
         }
-        else if(simulCount>1){
-            enQueue(q0, currentChild);
+        else{
+            if(currentQueue == 0) enQueue(q1, currentChild);
+            else if(currentQueue == 1) enQueue(q2, currentChild);
+            else if(currentQueue == 2) enQueue(q2, currentChild);
         }
+        
+       
 
-                   //Launch Children
+        //Launch Children
         if(launchFlag == 0 && childrenLaunched < options.proc && simulCount < options.simul && (((*sharedSeconds) > nextIntervalSeconds || 
                 ((*sharedSeconds) == nextIntervalSeconds && (*sharedNano) > nextIntervalNano)))){
             simulCount++;
