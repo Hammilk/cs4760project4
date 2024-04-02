@@ -15,8 +15,7 @@
 #define PERMS 0644
 
 
-
-static int randomize_helper(FINE *in){
+static int randomize_helper(FILE *in){
     unsigned int seed;
     if(!in)
         return -1;
@@ -42,16 +41,16 @@ static int randomize(void){
 
 typedef struct msgbuffer{
     long mtype;
-    //char strData[10]; I dont think i actually need this
     int intData; //I'll send pid with this
     int quanta; //This is for time quanta
 } msgbuffer;
 
 int main(int argc, char** argv){
-    
-    //Defining constant for termination chance
-    const int terminationChance = 5;
-    const int blockChance = 5;
+    //Passed command line arguments
+    //arg[1] = termination chance
+    //arg[2] = block chance
+    //arg[3] = Upper bound for time spent in system
+
 
     //Create message buffers
     msgbuffer buff;
@@ -70,7 +69,6 @@ int main(int argc, char** argv){
         exit(1);
     }
 
-
     //Set up shared memory pointer for struct
     int shm_id = shmget(SHMKEY1, BUFF_SZ, IPC_CREAT | 0666);
     if(shm_id <= 0){
@@ -87,153 +85,95 @@ int main(int argc, char** argv){
     }
     int* sharedNano = shmat(shm_id, 0, 0);
     
-
     //Set up some variables so I don't have to make a bunch of function calls
    
     int pid = getpid();
     int ppid = getppid();
     buff.mtype = ppid;
     buff.intData = ppid;
-    
+    int quantaPercentage;
     
     //Parse out current SysClock and SysNano time
     int sysClockS = *sharedSeconds; //Starting seconds
     int sysClockNano = *sharedNano; //Starting nanoseconds
-    int timeLimitSeconds = atoi(argv[1]) + sysClockS; //upper bound, passed from calling parent
-    int timeLimitNano = atoi(argv[2]) + sysClockNano; 
-    int timeElapsed;
-    int timer = 0;
 
-    //Initial print data
-    //printf("WORKER PID: %d PPID: %d SysClockS: %d SysClockNano: %d TermTimeS: %d TermTimeNano: %d\n--Just Starting\n"
-      //      , pid, ppid, *sharedSeconds, *sharedNano, timeLimitSeconds, timeLimitNano);
-    
-    //Receive message...message queue controlling iterations of loops
-    if(msgrcv(msqid, &buff, sizeof(msgbuffer), getpid(), 0) == -1){
-        perror("Failed to receive message\n");
-        exit(1);
+    //Defining constant for termination and block chance
+    const int terminationChance = atoi(argv[1]);
+    const int blockChance = atoi(argv[2]);
+    printf("t: %d\n", atoi(argv[1]));
+    printf("b: %d\n", atoi(argv[2]));
+    printf("lim: %d\n", atoi(argv[3]));
+
+    //Define upper bound for child to spent in system
+    int timeLimitNano = atoi(argv[3]) + sysClockNano;
+    int timeLimitSeconds = 0;
+
+    if(timeLimitNano > pow(10, 9)){
+        timeLimitSeconds++;
+        timeLimitNano = timeLimitNano - pow(10, 9);
     }
-    //Seed random
+
+    //Seed random  
     if(randomize()){
         fprintf(stderr, "Warning: No sources for randomness.\n");
     }
+    
 
-    //Calculate termination chance
-
-    if(rand() % 101 <= terminationChance){
-        int quantaPercentage = rand()%101;
-        buff.quanta = -(buff.quanta*(quantaPercentage/100);
-    }
-
-    //Calculate block chance
-        
-    else if(rand() % 101 <= blockChance){
-        int quantaPercentage = rand()%101;
-        buff.quanta = buff.quanta*(quantaPercentage/100);
-    }
-
-    //Calculate if process used entire time allotted
-    else{
-        int quantaPercentage = 100;
-        buff.quanta = buff.quanta; 
-    }
-                
-    //Send message back to parent
-    buff.mtype = ppid; //indicates who to send it to
-    buff.intData = pid;  
-
-    if(msgsnd(msqid, &buff, sizeof(msgbuffer)-sizeof(long), 0) == -1){
-        perror("msgsnd to parent failed\n");
-        exit(1);
-    }
-
-    /* 
-    while(timeLimitSeconds > (*sharedSeconds) || ((timeLimitSeconds == (*sharedSeconds)) && (timeLimitNano > (*sharedNano)))){
+    while(timeLimitSeconds > sysClockS || ((timeLimitSeconds == sysClockS) && (timeLimitNano > sysClockNano))){
+        printf("Child work section entered\n");    
         //Receive message...message queue controlling iterations of loops
         if(msgrcv(msqid, &buff, sizeof(msgbuffer), getpid(), 0) == -1){
             perror("Failed to receive message\n");
             exit(1);
         }
-        //Seed random
-        if(randomize()){
-            fprintf(stderr, "Warning: No sources for randomness.\n");
-        }
+        printf("Child received message\n");
 
         //Calculate termination chance
-   
 
         if(rand() % 101 <= terminationChance){
-            int quantaPercentage = rand()%101;
-            buff.mtype = ppid;
-            buff.intData = pid;
-            buff.quanta = -(buff.quanta*quantaPercentage);
+            quantaPercentage = rand()%101;
+            buff.quanta = -(buff.quanta*(quantaPercentage/100));
+            printf("Test: Termination\n");
+            if(msgsnd(msqid, &buff, sizeof(msgbuffer)-sizeof(long), 0) == -1){
+                perror("msgsnd to parent failed\n");
+                exit(1);
+            }
             break;
         }
 
         //Calculate block chance
         
         else if(rand() % 101 <= blockChance){
-            int quantaPercentage = rand()%101;
-            buff.mtype = ppid;
-            buff.intData = pid;
-            buff.quanta = buff.quanta*quantaPercentage;
-            break;
+            quantaPercentage = rand()%101;
+            buff.quanta = buff.quanta*(quantaPercentage/100);
+            printf("Test: Block\n");
         }
 
-        //Calculate if process used entire time allotted
+        else printf("Test: Whole\n");
         
-
-
-        //Otherwise return normal quanta
-        
-
-
-        //Goal is 3 types of results
-        //1. terminate after using entire time quanta
-        //2. terminate after using percentage of time quanta
-        //3. Blocked on i/o interrupt
-        //
-        //Normal Condition: Increment by time quanta received
-        //
-        //1. 
-        //Generate Random Number
-        //If terminate percentage begins
-        //Return random percnetage of quanta allocated timeslice used
-        //
-        //If it does not terminate, then use time quanta or block
-        //2. Determine if it will use entire timeslice of it will get blocked
-        //Determine via random number
-        //
-
-        
-                
+        //If child uses entire time quanta, it will default to this.
+        //Child will send back the quanta it was sent
         //Send message back to parent
         buff.mtype = ppid; //indicates who to send it to
         buff.intData = pid;  
-        strcpy(buff.strData, "1"); //1 indicates process still running
 
         if(msgsnd(msqid, &buff, sizeof(msgbuffer)-sizeof(long), 0) == -1){
             perror("msgsnd to parent failed\n");
             exit(1);
         }
-
+        printf("Message sent from child\n");
     }
-    
-    
-   
-    printf("WORKER PID: %d PPID: %d SysClockS: %d SysClockNano: %d TermTimeS: %d TermTimeNano: %d\n--Terminating\n"
-            , pid, ppid, *sharedSeconds, *sharedNano, timeLimitSeconds, timeLimitNano);
-    
-    //Send terminating message back to parent
+
     buff.mtype = ppid;
-    buff.intData = 0;
-    strcpy(buff.strData, "0"); //0 indicates process intends to terminate
+    buff.intData = pid;
+    int timeElapsed = (sysClockS * pow(10, 9) + sysClockNano) - (timeLimitSeconds * pow(10, 9) + timeLimitNano);
+    buff.quanta = -(buff.quanta - timeElapsed);
 
     if(msgsnd(msqid, &buff, sizeof(msgbuffer)-sizeof(long), 0) == -1){
         perror("msgsnd to parent failed\n");
         exit(1);
     }
-    */
+    
 
     //Unattach shared memory pointer
     shmdt(sharedSeconds);
