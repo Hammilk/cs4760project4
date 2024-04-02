@@ -272,10 +272,10 @@ int main(int argc, char* argv[]){
     }
     
     options_t options;
-    options.proc = 1; //n
-    options.simul = 1; //s
-    options.timelimit = 50000; //t
-    options.interval = 2; //i
+    options.proc = 2; //n
+    options.simul = 2; //s
+    options.timelimit = 50000000; //t
+    options.interval = 1; //i
     strcpy(options.logfile, "msgq.txt"); //f
 
     //Set up user input
@@ -366,15 +366,14 @@ int main(int argc, char* argv[]){
 
     //Variables
     int childrenLaunched = 0; 
-    int childFinished = 0;
     int simulCount = 0;
     int childrenFinishedCount = 0;
     int currentChild = 0;
     int nextIntervalSeconds;
     int nextIntervalNano;
     int launchFlag = 0;
-    int terminationPercent = 5;
-    int blockPercent = 5;
+    int terminationPercent = 2;
+    int blockPercent = 2;
     
     struct Queue* q0 = createQueue(); //Highest priority queue (10ms)
     struct Queue* q1 = createQueue(); // (20 ms)
@@ -383,18 +382,21 @@ int main(int argc, char* argv[]){
 
 
     while(childrenFinishedCount < options.proc){
-
+        
         //Calculate Next Child
         if(simulCount > 0){ //Skips running if no child has been launched
+            //Increment for calculating next child
+            incrementClock(sharedSeconds, sharedNano, 5000);
             currentChild = nextChildTest(q0);
             if(currentChild == -1){
                 perror("queue failed");
                 exit(1);
             }
+            printf("Test: SimulCount: %d, currentChild %d\n", simulCount, currentChild);
         }
         //Increments clock by 1000 ns if no children are launched
         else{
-            incrementClock(sharedSeconds, sharedNano, 1000);
+            incrementClock(sharedSeconds, sharedNano, 100000);
         }
 
         if(currentChild > 0){
@@ -405,23 +407,24 @@ int main(int argc, char* argv[]){
         if(simulCount > 0){
             buff.mtype = processTable[currentChild].pid;
             buff.intData = processTable[currentChild].pid;
-            buff.quanta = 500000;
-
+            buff.quanta = 5000000;
+            
+            fprintf(fptr, "OSS: Dispatching process with PID %d from queue 0 at time %d:%d\n", processTable[currentChild].pid, *sharedSeconds, *sharedNano); 
             //Message Sent
             if(msgsnd(msqid, &buff, sizeof(msgbuffer)-sizeof(long), 0) == -1){
                 perror("msgsnd to child failed\n");
                 exit(1);
             }
-            printf("Parent send message to child with mtype %ld\n", buff.mtype);
             //TODO For now, send child to back of current queue
+            if(simulCount>1)
             deQueue(q0);
-
+            
             //Message Received (Blocking)  
             if(msgrcv(msqid, &buff, sizeof(msgbuffer), getpid(), 0) == -1){
                 perror("failed to receive message in parent\n");
                 exit(1);
             }
-
+            fprintf(fptr, "OSS: Receiving that process with PID %d ran for %d nanoseconds\n", processTable[currentChild].pid, abs(buff.quanta));
             //Increment Clock by Amount Used by Child
             incrementClock(sharedSeconds, sharedNano, abs(buff.quanta));
 
@@ -430,24 +433,25 @@ int main(int argc, char* argv[]){
         
         //If child terminates
         if(buff.quanta < 0){
+            buff.quanta = 0;
             printf("Child %d has decided to terminate\n", currentChild);
+            fprintf(fptr, "OSS: Received that process with PID %d terminated at time %d:%d\n", processTable[currentChild].pid, *sharedSeconds, *sharedNano);
             wait(0);
             printf("Child cleared\n");
-            for(int i = 0; i < 20; i++){
-                if(processTable[i].pid == childFinished){
-                    processTable[i].occupied = 0;
-                    processTable[i].pid = 0;
-                    processTable[i].startSeconds = 0;
-                    processTable[i].startNano = 0;
-                }
-            }
-            printf("Child PCB Cleared");    
+            processTable[currentChild].pid = 0;
+            processTable[currentChild].occupied = 0;
+            processTable[currentChild].startSeconds = 0;
+            processTable[currentChild].startNano = 0;
+           
+
+            simulCount--;
             childrenFinishedCount++;
         }
-        else enQueue(q0, currentChild);
+        else if(simulCount>1){
+            enQueue(q0, currentChild);
+        }
 
-        //Launch Children
-        printf("Launch child\n");
+                   //Launch Children
         if(launchFlag == 0 && childrenLaunched < options.proc && simulCount < options.simul && (((*sharedSeconds) > nextIntervalSeconds || 
                 ((*sharedSeconds) == nextIntervalSeconds && (*sharedNano) > nextIntervalNano)))){
             simulCount++;
@@ -482,6 +486,10 @@ int main(int argc, char* argv[]){
         }
 
         else if (pid > 0 && launchFlag > 0){
+            printf("OSS: Generating process with PID %d and putting it in queue 0 at time %d:%d\n", pid, *sharedSeconds, *sharedNano);
+            
+            fprintf(fptr, "OSS: Generating process with PID %d and putting it in queue 0 at time %d:%d\n", pid, *sharedSeconds, *sharedNano);
+            
             launchFlag = 0;       
             //Insert child into PCB
             int index = 0;
@@ -511,7 +519,6 @@ int main(int argc, char* argv[]){
             
         }
     }
-    printf("exit loop\n");
    
 
     //Remove message queues 

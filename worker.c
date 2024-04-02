@@ -92,6 +92,7 @@ int main(int argc, char** argv){
     buff.mtype = ppid;
     buff.intData = ppid;
     int quantaPercentage;
+    int earlyTerm = 0;
     
     //Parse out current SysClock and SysNano time
     int sysClockS = *sharedSeconds; //Starting seconds
@@ -106,7 +107,7 @@ int main(int argc, char** argv){
 
     //Define upper bound for child to spent in system
     int timeLimitNano = atoi(argv[3]) + sysClockNano;
-    int timeLimitSeconds = 0;
+    int timeLimitSeconds = sysClockS;
 
     if(timeLimitNano > pow(10, 9)){
         timeLimitSeconds++;
@@ -130,22 +131,27 @@ int main(int argc, char** argv){
 
         //Calculate termination chance
 
-        if(rand() % 101 <= terminationChance){
+        if(rand() % 501 <= terminationChance){
             quantaPercentage = rand()%101;
-            buff.quanta = -(buff.quanta*(quantaPercentage/100));
+            printf("qP %d\n", quantaPercentage);
+            buff.quanta = -(buff.quanta*quantaPercentage/100);
             printf("Test: Termination\n");
+            buff.mtype = ppid;
+            buff.intData = pid;
             if(msgsnd(msqid, &buff, sizeof(msgbuffer)-sizeof(long), 0) == -1){
                 perror("msgsnd to parent failed\n");
                 exit(1);
             }
+            printf("buff quanta: %d\n", buff.quanta);
+            earlyTerm = 1;
             break;
         }
 
         //Calculate block chance
         
-        else if(rand() % 101 <= blockChance){
+        else if(rand() % 501 <= blockChance){
             quantaPercentage = rand()%101;
-            buff.quanta = buff.quanta*(quantaPercentage/100);
+            buff.quanta = buff.quanta*quantaPercentage/100;
             printf("Test: Block\n");
         }
 
@@ -163,18 +169,19 @@ int main(int argc, char** argv){
         }
         printf("Message sent from child\n");
     }
+    printf("Exit child loop\n");
+    if(earlyTerm == 0){
+        buff.mtype = ppid;
+        buff.intData = pid;
+        int timeElapsed = (sysClockS * pow(10, 9) + sysClockNano) - (timeLimitSeconds * pow(10, 9) + timeLimitNano);
+        buff.quanta = -(buff.quanta - timeElapsed);
 
-    buff.mtype = ppid;
-    buff.intData = pid;
-    int timeElapsed = (sysClockS * pow(10, 9) + sysClockNano) - (timeLimitSeconds * pow(10, 9) + timeLimitNano);
-    buff.quanta = -(buff.quanta - timeElapsed);
-
-    if(msgsnd(msqid, &buff, sizeof(msgbuffer)-sizeof(long), 0) == -1){
-        perror("msgsnd to parent failed\n");
-        exit(1);
-    }
+        if(msgsnd(msqid, &buff, sizeof(msgbuffer)-sizeof(long), 0) == -1){
+            perror("msgsnd to parent failed\n");
+            exit(1);
+        }
+    }    
     
-
     //Unattach shared memory pointer
     shmdt(sharedSeconds);
     shmdt(sharedNano);
