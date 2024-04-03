@@ -23,6 +23,8 @@
 #include<string.h>
 #include<sys/msg.h>
 #include<errno.h>
+#include<stdarg.h>
+
 
 #define SHMKEY1 2031535
 #define SHMKEY2 2031536
@@ -30,6 +32,24 @@
 #define BUFF_SZ sizeof (int)
 #define MAXDIGITS 3
 #define PERMS 0644
+
+// print no more than 10k lines to a file
+int lfprintf(FILE *stream,const char *format, ... ) {
+    static int lineCount = 0;
+    lineCount++;
+
+    if (lineCount > 10000)
+        return 1;
+
+    va_list args;
+    va_start(args, format);
+    vfprintf(stream,format, args);
+    va_end(args);
+
+    return 0;
+}
+
+
 
 struct QNode{
     int key;
@@ -177,12 +197,12 @@ void printProcessTable(int PID, int SysClockS, int SysClockNano, struct PCB proc
 }
 
 void fprintProcessTable(int PID, int SysClockS, int SysClockNano, struct PCB processTable[20], FILE *fptr){
-    fprintf(fptr, "OSS PID %d SysClockS: %d SysClockNano: %d\n", PID, SysClockS, SysClockNano);
-    fprintf(fptr, "Process Table:\n");
-    fprintf(fptr, "Entry     Occupied  PID       StartS    Startn\n"); 
+    lfprintf(fptr, "OSS PID %d SysClockS: %d SysClockNano: %d\n", PID, SysClockS, SysClockNano);
+    lfprintf(fptr, "Process Table:\n");
+    lfprintf(fptr, "Entry     Occupied  PID       StartS    Startn\n"); 
     for(int i = 0; i<20; i++){
         if((processTable[i].occupied) == 1){
-            fprintf(fptr, "%d         %d         %d         %d         %d\n", i, processTable[i].occupied, processTable[i].pid, processTable[i].startSeconds, processTable[i].startNano);
+            lfprintf(fptr, "%d         %d         %d         %d         %d\n", i, processTable[i].occupied, processTable[i].pid, processTable[i].startSeconds, processTable[i].startNano);
         }
         
     } 
@@ -408,7 +428,9 @@ int main(int argc, char* argv[]){
                 enQueue(q0, key);
                 incrementClock(sharedSeconds, sharedNano, 10000); //Increment for moving from block queue to ready queue
                 waitTime += 10000; //Add scheduling action time to wait time
-                fprintf(fptr, "OSS: Process with PID %d was unblocked and placed into the ready queue at time %d:%d\n", processTable[key].pid, *sharedSeconds, *sharedNano);
+                lfprintf(fptr, "OSS: Process with PID %d was unblocked and placed into the ready queue at time %d:%d\n", processTable[key].pid, *sharedSeconds, *sharedNano);
+                printf("OSS: Process with PID %d was unblocked and placed into the ready queue at time %d:%d\n", processTable[key].pid, *sharedSeconds, *sharedNano);
+ 
                 readyCount++; //Acknowledges another process is ready to go
 
                 //STATISTICS: Block time: Does not add straight up 1 second because the program could increment over before it gets a chance to check
@@ -462,7 +484,10 @@ int main(int argc, char* argv[]){
             else if(currentQueue == 2) timeSlice = 4 * pow(10, 6);
             buff.quanta = timeSlice;
             
-            fprintf(fptr, "OSS: Dispatching process with PID %d from queue %d at time %d:%d\n", processTable[currentChild].pid, currentQueue, *sharedSeconds, *sharedNano); 
+            lfprintf(fptr, "OSS: Dispatching process with PID %d from queue %d at time %d:%d\n", processTable[currentChild].pid, currentQueue, *sharedSeconds, *sharedNano); 
+            printf("OSS: Dispatching process with PID %d from queue %d at time %d:%d\n", processTable[currentChild].pid, currentQueue, *sharedSeconds, *sharedNano); 
+ 
+            
             //Message Sent
             if(msgsnd(msqid, &buff, sizeof(msgbuffer)-sizeof(long), 0) == -1){
                 perror("msgsnd to child failed\n");
@@ -491,7 +516,9 @@ int main(int argc, char* argv[]){
                 perror("failed to receive message in parent\n");
                 exit(1);
             }
-            fprintf(fptr, "OSS: Receiving that process with PID %d ran for %d nanoseconds\n", processTable[currentChild].pid, abs(buff.quanta));
+            lfprintf(fptr, "OSS: Receiving that process with PID %d ran for %d nanoseconds\n", processTable[currentChild].pid, abs(buff.quanta));
+            printf("OSS: Receiving that process with PID %d ran for %d nanoseconds\n", processTable[currentChild].pid, abs(buff.quanta));
+ 
             //STATISTICS: Wait Time
             if(simulCount > 1){
                 waitTime += abs(buff.quanta);
@@ -506,7 +533,9 @@ int main(int argc, char* argv[]){
         //If child terminates
         if(buff.quanta < 0){
             printf("Child %d has decided to terminate\n", currentChild);
-            fprintf(fptr, "OSS: Received that process with PID %d terminated at time %d:%d\n", processTable[currentChild].pid, *sharedSeconds, *sharedNano);
+            lfprintf(fptr, "OSS: Received that process with PID %d terminated at time %d:%d\n", processTable[currentChild].pid, *sharedSeconds, *sharedNano);
+            printf("OSS: Received that process with PID %d terminated at time %d:%d\n", processTable[currentChild].pid, *sharedSeconds, *sharedNano);
+ 
             wait(0);
             processTable[currentChild].pid = 0;
             processTable[currentChild].occupied = 0;
@@ -528,8 +557,11 @@ int main(int argc, char* argv[]){
             processTable[currentChild].blocked = 1;
             processTable[currentChild].eventBlockedUntilNano = (*sharedNano); //Block runs for 1000 ms
             processTable[currentChild].eventBlockedUntilSec++;
-            fprintf(fptr, "OSS: Recieved that process with PID %d blocked until time %d:%d at time %d:%d\n", processTable[currentChild].pid,
+            lfprintf(fptr, "OSS: Recieved that process with PID %d blocked until time %d:%d at time %d:%d\n", processTable[currentChild].pid,
                    processTable[currentChild].eventBlockedUntilSec, processTable[currentChild].eventBlockedUntilNano, *sharedSeconds, *sharedNano);            
+            printf("OSS: Recieved that process with PID %d blocked until time %d:%d at time %d:%d\n", processTable[currentChild].pid,
+                   processTable[currentChild].eventBlockedUntilSec, processTable[currentChild].eventBlockedUntilNano, *sharedSeconds, *sharedNano);            
+
             buff.mtype = 0;
             buff.intData = 0; 
             buff.quanta = 0;
@@ -540,18 +572,25 @@ int main(int argc, char* argv[]){
         else if(simulCount > 0){
             if(currentQueue == 0){
                 enQueue(q1, currentChild);
-                fprintf(fptr, "OSS: Process with PID %d moved from Queue 0 to Queue 1 at time %d:%d\n", processTable[currentChild].pid, *sharedSeconds, *sharedNano);
+                lfprintf(fptr, "OSS: Process with PID %d moved from Queue 0 to Queue 1 at time %d:%d\n", processTable[currentChild].pid, *sharedSeconds, *sharedNano);
+                printf("OSS: Process with PID %d moved from Queue 0 to Queue 1 at time %d:%d\n", processTable[currentChild].pid, *sharedSeconds, *sharedNano);
+ 
             }
 
             
            else if(currentQueue == 1){
                enQueue(q2, currentChild);
-               fprintf(fptr, "OSS: Process with PID %d moved from Queue 1 to Queue 2 at time %d:%d\n", processTable[currentChild].pid, *sharedSeconds, *sharedNano);          
+               lfprintf(fptr, "OSS: Process with PID %d moved from Queue 1 to Queue 2 at time %d:%d\n", processTable[currentChild].pid, *sharedSeconds, *sharedNano);          
+               printf("OSS: Process with PID %d moved from Queue 1 to Queue 2 at time %d:%d\n", processTable[currentChild].pid, *sharedSeconds, *sharedNano);          
+
            }
+
 
            else if(currentQueue == 2){
                enQueue(q2, currentChild);
-               fprintf(fptr, "OSS: Process with PID %d requeued to Queue 2 at time %d:%d\n", processTable[currentChild].pid, *sharedSeconds, *sharedNano); 
+               lfprintf(fptr, "OSS: Process with PID %d requeued to Queue 2 at time %d:%d\n", processTable[currentChild].pid, *sharedSeconds, *sharedNano); 
+               printf("OSS: Process with PID %d requeued to Queue 2 at time %d:%d\n", processTable[currentChild].pid, *sharedSeconds, *sharedNano); 
+ 
            }
 
         }
@@ -596,8 +635,9 @@ int main(int argc, char* argv[]){
         else if (pid > 0 && launchFlag > 0){
             printf("OSS: Generating process with PID %d and putting it in queue 0 at time %d:%d\n", pid, *sharedSeconds, *sharedNano);
             
-            fprintf(fptr, "OSS: Generating process with PID %d and putting it in queue 0 at time %d:%d\n", pid, *sharedSeconds, *sharedNano);
-            
+            lfprintf(fptr, "OSS: Generating process with PID %d and putting it in queue 0 at time %d:%d\n", pid, *sharedSeconds, *sharedNano);
+            printf("OSS: Generating process with PID %d and putting it in queue 0 at time %d:%d\n", pid, *sharedSeconds, *sharedNano);
+ 
             launchFlag = 0;       
             //Insert child into PCB
             int index = 0;

@@ -1,750 +1,96 @@
-OSS: Generating process with PID 7972 and putting it in queue 0 at time 0:500000000
-OSS: Dispatching process with PID 7972 from queue 0 at time 0:500005000
-OSS: Receiving that process with PID 7972 ran for 1000000 nanoseconds
-OSS: Process with PID 7972 moved from Queue 0 to Queue 1 at time 0:501005000
-OSS: Dispatching process with PID 7972 from queue 1 at time 0:501010000
-OSS: Receiving that process with PID 7972 ran for 2000000 nanoseconds
-OSS: Process with PID 7972 moved from Queue 1 to Queue 2 at time 0:503010000
-OSS: Dispatching process with PID 7972 from queue 2 at time 0:503015000
-OSS: Receiving that process with PID 7972 ran for 4000000 nanoseconds
-OSS: Process with PID 7972 requeued to Queue 2 at time 0:507015000
-OSS: Dispatching process with PID 7972 from queue 2 at time 0:507020000
-OSS: Receiving that process with PID 7972 ran for 4000000 nanoseconds
-OSS: Process with PID 7972 requeued to Queue 2 at time 0:511020000
-OSS: Dispatching process with PID 7972 from queue 2 at time 0:511025000
-OSS: Receiving that process with PID 7972 ran for 4000000 nanoseconds
-OSS: Process with PID 7972 requeued to Queue 2 at time 0:515025000
-OSS: Dispatching process with PID 7972 from queue 2 at time 0:515030000
-OSS: Receiving that process with PID 7972 ran for 4000000 nanoseconds
-OSS: Process with PID 7972 requeued to Queue 2 at time 0:519030000
-OSS: Dispatching process with PID 7972 from queue 2 at time 0:519035000
-OSS: Receiving that process with PID 7972 ran for 4000000 nanoseconds
-OSS: Process with PID 7972 requeued to Queue 2 at time 0:523035000
-OSS: Dispatching process with PID 7972 from queue 2 at time 0:523040000
-OSS: Receiving that process with PID 7972 ran for 4000000 nanoseconds
-OSS: Process with PID 7972 requeued to Queue 2 at time 0:527040000
-OSS: Dispatching process with PID 7972 from queue 2 at time 0:527045000
-OSS: Receiving that process with PID 7972 ran for 4000000 nanoseconds
-OSS: Process with PID 7972 requeued to Queue 2 at time 0:531045000
-OSS: Dispatching process with PID 7972 from queue 2 at time 0:531050000
-OSS: Receiving that process with PID 7972 ran for 4000000 nanoseconds
-OSS: Process with PID 7972 requeued to Queue 2 at time 0:535050000
-OSS: Dispatching process with PID 7972 from queue 2 at time 0:535055000
-OSS: Receiving that process with PID 7972 ran for 1840000 nanoseconds
-OSS: Received that process with PID 7972 terminated at time 0:536895000
-OSS: Generating process with PID 7973 and putting it in queue 0 at time 2:36895000
-OSS: Dispatching process with PID 7973 from queue 0 at time 2:36900000
-OSS: Receiving that process with PID 7973 ran for 1000000 nanoseconds
-OSS: Process with PID 7973 moved from Queue 0 to Queue 1 at time 2:37900000
-OSS: Dispatching process with PID 7973 from queue 1 at time 2:37905000
-OSS: Receiving that process with PID 7973 ran for 2000000 nanoseconds
-OSS: Process with PID 7973 moved from Queue 1 to Queue 2 at time 2:39905000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:39910000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:43910000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:43915000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:47915000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:47920000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:51920000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:51925000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:55925000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:55930000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:59930000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:59935000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:63935000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:63940000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:67940000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:67945000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:71945000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:71950000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:75950000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:75955000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:79955000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:79960000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:83960000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:83965000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:87965000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:87970000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:91970000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:91975000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:95975000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:95980000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:99980000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:99985000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:103985000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:103990000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:107990000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:107995000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:111995000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:112000000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:116000000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:116005000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:120005000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:120010000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:124010000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:124015000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:128015000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:128020000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:132020000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:132025000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:136025000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:136030000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:140030000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:140035000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:144035000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:144040000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:148040000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:148045000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:152045000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:152050000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:156050000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:156055000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:160055000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:160060000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:164060000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:164065000
-OSS: Receiving that process with PID 7973 ran for 4000000 nanoseconds
-OSS: Process with PID 7973 requeued to Queue 2 at time 2:168065000
-OSS: Dispatching process with PID 7973 from queue 2 at time 2:168070000
-OSS: Receiving that process with PID 7973 ran for 1760000 nanoseconds
-OSS: Received that process with PID 7973 terminated at time 2:169830000
-OSS: Generating process with PID 7974 and putting it in queue 0 at time 2:669830000
-OSS: Dispatching process with PID 7974 from queue 0 at time 2:669835000
-OSS: Receiving that process with PID 7974 ran for 1000000 nanoseconds
-OSS: Process with PID 7974 moved from Queue 0 to Queue 1 at time 2:670835000
-OSS: Generating process with PID 7975 and putting it in queue 0 at time 2:670835000
-OSS: Dispatching process with PID 7975 from queue 0 at time 2:670840000
-OSS: Receiving that process with PID 7975 ran for 1000000 nanoseconds
-OSS: Process with PID 7975 moved from Queue 0 to Queue 1 at time 2:671840000
-OSS: Dispatching process with PID 7974 from queue 1 at time 2:671845000
-OSS: Receiving that process with PID 7974 ran for 2000000 nanoseconds
-OSS: Process with PID 7974 moved from Queue 1 to Queue 2 at time 2:673845000
-OSS: Dispatching process with PID 7975 from queue 1 at time 2:673850000
-OSS: Receiving that process with PID 7975 ran for 2000000 nanoseconds
-OSS: Process with PID 7975 moved from Queue 1 to Queue 2 at time 2:675850000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:675855000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:679855000
-OSS: Dispatching process with PID 7975 from queue 2 at time 2:679860000
-OSS: Receiving that process with PID 7975 ran for 4000000 nanoseconds
-OSS: Process with PID 7975 requeued to Queue 2 at time 2:683860000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:683865000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:687865000
-OSS: Dispatching process with PID 7975 from queue 2 at time 2:687870000
-OSS: Receiving that process with PID 7975 ran for 4000000 nanoseconds
-OSS: Process with PID 7975 requeued to Queue 2 at time 2:691870000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:691875000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:695875000
-OSS: Dispatching process with PID 7975 from queue 2 at time 2:695880000
-OSS: Receiving that process with PID 7975 ran for 4000000 nanoseconds
-OSS: Process with PID 7975 requeued to Queue 2 at time 2:699880000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:699885000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:703885000
-OSS: Dispatching process with PID 7975 from queue 2 at time 2:703890000
-OSS: Receiving that process with PID 7975 ran for 4000000 nanoseconds
-OSS: Process with PID 7975 requeued to Queue 2 at time 2:707890000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:707895000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:711895000
-OSS: Dispatching process with PID 7975 from queue 2 at time 2:711900000
-OSS: Receiving that process with PID 7975 ran for 4000000 nanoseconds
-OSS: Process with PID 7975 requeued to Queue 2 at time 2:715900000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:715905000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:719905000
-OSS: Dispatching process with PID 7975 from queue 2 at time 2:719910000
-OSS: Receiving that process with PID 7975 ran for 4000000 nanoseconds
-OSS: Process with PID 7975 requeued to Queue 2 at time 2:723910000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:723915000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:727915000
-OSS: Dispatching process with PID 7975 from queue 2 at time 2:727920000
-OSS: Receiving that process with PID 7975 ran for 4000000 nanoseconds
-OSS: Process with PID 7975 requeued to Queue 2 at time 2:731920000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:731925000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:735925000
-OSS: Dispatching process with PID 7975 from queue 2 at time 2:735930000
-OSS: Receiving that process with PID 7975 ran for 4000000 nanoseconds
-OSS: Process with PID 7975 requeued to Queue 2 at time 2:739930000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:739935000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:743935000
-OSS: Dispatching process with PID 7975 from queue 2 at time 2:743940000
-OSS: Receiving that process with PID 7975 ran for 4000000 nanoseconds
-OSS: Process with PID 7975 requeued to Queue 2 at time 2:747940000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:747945000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:751945000
-OSS: Dispatching process with PID 7975 from queue 2 at time 2:751950000
-OSS: Receiving that process with PID 7975 ran for 2880000 nanoseconds
-OSS: Received that process with PID 7975 terminated at time 2:754830000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:754835000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:758835000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:758840000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:762840000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:762845000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:766845000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:766850000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:770850000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:770855000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:774855000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:774860000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:778860000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:778865000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:782865000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:782870000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:786870000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:786875000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:790875000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:790880000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:794880000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:794885000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:798885000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:798890000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:802890000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:802895000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:806895000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:806900000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:810900000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:810905000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:814905000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:814910000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:818910000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:818915000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:822915000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:822920000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:826920000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:826925000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:830925000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:830930000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:834930000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:834935000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:838935000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:838940000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:842940000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:842945000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:846945000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:846950000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:850950000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:850955000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:854955000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:854960000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:858960000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:858965000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:862965000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:862970000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:866970000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:866975000
-OSS: Receiving that process with PID 7974 ran for 4000000 nanoseconds
-OSS: Process with PID 7974 requeued to Queue 2 at time 2:870975000
-OSS: Dispatching process with PID 7974 from queue 2 at time 2:870980000
-OSS: Receiving that process with PID 7974 ran for 1200000 nanoseconds
-OSS: Received that process with PID 7974 terminated at time 2:872180000
-OSS: Generating process with PID 7976 and putting it in queue 0 at time 5:372180000
-OSS: Dispatching process with PID 7976 from queue 0 at time 5:372185000
-OSS: Receiving that process with PID 7976 ran for 1000000 nanoseconds
-OSS: Process with PID 7976 moved from Queue 0 to Queue 1 at time 5:373185000
-OSS: Dispatching process with PID 7976 from queue 1 at time 5:373190000
-OSS: Receiving that process with PID 7976 ran for 2000000 nanoseconds
-OSS: Process with PID 7976 moved from Queue 1 to Queue 2 at time 5:375190000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:375195000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:379195000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:379200000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:383200000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:383205000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:387205000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:387210000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:391210000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:391215000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:395215000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:395220000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:399220000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:399225000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:403225000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:403230000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:407230000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:407235000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:411235000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:411240000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:415240000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:415245000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:419245000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:419250000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:423250000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:423255000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:427255000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:427260000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:431260000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:431265000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:435265000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:435270000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:439270000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:439275000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:443275000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:443280000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:447280000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:447285000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:451285000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:451290000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:455290000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:455295000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:459295000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:459300000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:463300000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:463305000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:467305000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:467310000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:471310000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:471315000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:475315000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:475320000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:479320000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:479325000
-OSS: Receiving that process with PID 7976 ran for 40000 nanoseconds
-OSS: Recieved that process with PID 7976 blocked until time 1:479365000 at time 5:479365000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:479365000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:483365000
-OSS: Process with PID 7976 was unblocked and placed into the ready queue at time 5:483375000
-OSS: Dispatching process with PID 7976 from queue 0 at time 5:483380000
-OSS: Receiving that process with PID 7976 ran for 1000000 nanoseconds
-OSS: Process with PID 7976 moved from Queue 0 to Queue 1 at time 5:484380000
-OSS: Dispatching process with PID 7976 from queue 1 at time 5:484385000
-OSS: Receiving that process with PID 7976 ran for 2000000 nanoseconds
-OSS: Process with PID 7976 moved from Queue 1 to Queue 2 at time 5:486385000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:486390000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:490390000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:490395000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:494395000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:494400000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:498400000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:498405000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:502405000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:502410000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:506410000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:506415000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:510415000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:510420000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:514420000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:514425000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:518425000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:518430000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:522430000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:522435000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:526435000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:526440000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:530440000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:530445000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:534445000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:534450000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:538450000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:538455000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:542455000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:542460000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:546460000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:546465000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:550465000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:550470000
-OSS: Receiving that process with PID 7976 ran for 1800000 nanoseconds
-OSS: Recieved that process with PID 7976 blocked until time 2:552270000 at time 5:552270000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:552270000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:556270000
-OSS: Process with PID 7976 was unblocked and placed into the ready queue at time 5:556280000
-OSS: Dispatching process with PID 7976 from queue 0 at time 5:556285000
-OSS: Receiving that process with PID 7976 ran for 1000000 nanoseconds
-OSS: Process with PID 7976 moved from Queue 0 to Queue 1 at time 5:557285000
-OSS: Dispatching process with PID 7976 from queue 1 at time 5:557290000
-OSS: Receiving that process with PID 7976 ran for 2000000 nanoseconds
-OSS: Process with PID 7976 moved from Queue 1 to Queue 2 at time 5:559290000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:559295000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:563295000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:563300000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:567300000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:567305000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:571305000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:571310000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:575310000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:575315000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:579315000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:579320000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:583320000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:583325000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:587325000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:587330000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:591330000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:591335000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:595335000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:595340000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:599340000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:599345000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:603345000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:603350000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:607350000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:607355000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:611355000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:611360000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:615360000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:615365000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:619365000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:619370000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:623370000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:623375000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:627375000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:627380000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:631380000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:631385000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:635385000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:635390000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:639390000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:639395000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:643395000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:643400000
-OSS: Receiving that process with PID 7976 ran for 2840000 nanoseconds
-OSS: Recieved that process with PID 7976 blocked until time 3:646240000 at time 5:646240000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:646240000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:650240000
-OSS: Process with PID 7976 was unblocked and placed into the ready queue at time 5:650250000
-OSS: Dispatching process with PID 7976 from queue 0 at time 5:650255000
-OSS: Receiving that process with PID 7976 ran for 1000000 nanoseconds
-OSS: Process with PID 7976 moved from Queue 0 to Queue 1 at time 5:651255000
-OSS: Dispatching process with PID 7976 from queue 1 at time 5:651260000
-OSS: Receiving that process with PID 7976 ran for 2000000 nanoseconds
-OSS: Process with PID 7976 moved from Queue 1 to Queue 2 at time 5:653260000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:653265000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:657265000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:657270000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:661270000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:661275000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:665275000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:665280000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:669280000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:669285000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:673285000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:673290000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:677290000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:677295000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:681295000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:681300000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:685300000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:685305000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:689305000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:689310000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:693310000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:693315000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:697315000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:697320000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:701320000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:701325000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:705325000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:705330000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:709330000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:709335000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:713335000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:713340000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:717340000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:717345000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:721345000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:721350000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:725350000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:725355000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:729355000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:729360000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:733360000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:733365000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:737365000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:737370000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:741370000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:741375000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:745375000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:745380000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:749380000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:749385000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:753385000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:753390000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:757390000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:757395000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:761395000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:761400000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:765400000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:765405000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:769405000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:769410000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:773410000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:773415000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:777415000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:777420000
-OSS: Receiving that process with PID 7976 ran for 3400000 nanoseconds
-OSS: Recieved that process with PID 7976 blocked until time 4:780820000 at time 5:780820000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:780820000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:784820000
-OSS: Process with PID 7976 was unblocked and placed into the ready queue at time 5:784830000
-OSS: Dispatching process with PID 7976 from queue 0 at time 5:784835000
-OSS: Receiving that process with PID 7976 ran for 1000000 nanoseconds
-OSS: Process with PID 7976 moved from Queue 0 to Queue 1 at time 5:785835000
-OSS: Dispatching process with PID 7976 from queue 1 at time 5:785840000
-OSS: Receiving that process with PID 7976 ran for 2000000 nanoseconds
-OSS: Process with PID 7976 moved from Queue 1 to Queue 2 at time 5:787840000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:787845000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:791845000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:791850000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:795850000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:795855000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:799855000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:799860000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:803860000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:803865000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:807865000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:807870000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:811870000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:811875000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:815875000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:815880000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:819880000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:819885000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:823885000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:823890000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:827890000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:827895000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:831895000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:831900000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:835900000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:835905000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:839905000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:839910000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:843910000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:843915000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:847915000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:847920000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:851920000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:851925000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:855925000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:855930000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:859930000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:859935000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:863935000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:863940000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:867940000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:867945000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:871945000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:871950000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:875950000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:875955000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:879955000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:879960000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:883960000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:883965000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:887965000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:887970000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:891970000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:891975000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:895975000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:895980000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:899980000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:899985000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:903985000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:903990000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:907990000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:907995000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:911995000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:912000000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:916000000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:916005000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:920005000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:920010000
-OSS: Receiving that process with PID 7976 ran for 4000000 nanoseconds
-OSS: Process with PID 7976 requeued to Queue 2 at time 5:924010000
-OSS: Dispatching process with PID 7976 from queue 2 at time 5:924015000
-OSS: Receiving that process with PID 7976 ran for 40000 nanoseconds
-OSS: Received that process with PID 7976 terminated at time 5:924055000
+OSS: Generating process with PID 1321036 and putting it in queue 0 at time 0:500000000
+OSS: Dispatching process with PID 1321036 from queue 0 at time 0:500005000
+OSS: Receiving that process with PID 1321036 ran for 1000000 nanoseconds
+OSS: Process with PID 1321036 moved from Queue 0 to Queue 1 at time 0:501005000
+OSS: Dispatching process with PID 1321036 from queue 1 at time 0:501010000
+OSS: Receiving that process with PID 1321036 ran for 2000000 nanoseconds
+OSS: Process with PID 1321036 moved from Queue 1 to Queue 2 at time 0:503010000
+OSS: Dispatching process with PID 1321036 from queue 2 at time 0:503015000
+OSS: Receiving that process with PID 1321036 ran for 4000000 nanoseconds
+OSS: Process with PID 1321036 requeued to Queue 2 at time 0:507015000
+OSS: Dispatching process with PID 1321036 from queue 2 at time 0:507020000
+OSS: Receiving that process with PID 1321036 ran for 4000000 nanoseconds
+OSS: Process with PID 1321036 requeued to Queue 2 at time 0:511020000
+OSS: Dispatching process with PID 1321036 from queue 2 at time 0:511025000
+OSS: Receiving that process with PID 1321036 ran for 4000000 nanoseconds
+OSS: Process with PID 1321036 requeued to Queue 2 at time 0:515025000
+OSS: Dispatching process with PID 1321036 from queue 2 at time 0:515030000
+OSS: Receiving that process with PID 1321036 ran for 4000000 nanoseconds
+OSS: Process with PID 1321036 requeued to Queue 2 at time 0:519030000
+OSS: Dispatching process with PID 1321036 from queue 2 at time 0:519035000
+OSS: Receiving that process with PID 1321036 ran for 4000000 nanoseconds
+OSS: Process with PID 1321036 requeued to Queue 2 at time 0:523035000
+OSS: Dispatching process with PID 1321036 from queue 2 at time 0:523040000
+OSS: Receiving that process with PID 1321036 ran for 4000000 nanoseconds
+OSS: Process with PID 1321036 requeued to Queue 2 at time 0:527040000
+OSS: Dispatching process with PID 1321036 from queue 2 at time 0:527045000
+OSS: Receiving that process with PID 1321036 ran for 4000000 nanoseconds
+OSS: Process with PID 1321036 requeued to Queue 2 at time 0:531045000
+OSS: Dispatching process with PID 1321036 from queue 2 at time 0:531050000
+OSS: Receiving that process with PID 1321036 ran for 4000000 nanoseconds
+OSS: Process with PID 1321036 requeued to Queue 2 at time 0:535050000
+OSS: Dispatching process with PID 1321036 from queue 2 at time 0:535055000
+OSS: Receiving that process with PID 1321036 ran for 4000000 nanoseconds
+OSS: Process with PID 1321036 requeued to Queue 2 at time 0:539055000
+OSS: Dispatching process with PID 1321036 from queue 2 at time 0:539060000
+OSS: Receiving that process with PID 1321036 ran for 4000000 nanoseconds
+OSS: Process with PID 1321036 requeued to Queue 2 at time 0:543060000
+OSS: Dispatching process with PID 1321036 from queue 2 at time 0:543065000
+OSS: Receiving that process with PID 1321036 ran for 4000000 nanoseconds
+OSS: Process with PID 1321036 requeued to Queue 2 at time 0:547065000
+OSS: Dispatching process with PID 1321036 from queue 2 at time 0:547070000
+OSS: Receiving that process with PID 1321036 ran for 4000000 nanoseconds
+OSS: Process with PID 1321036 requeued to Queue 2 at time 0:551070000
+OSS: Dispatching process with PID 1321036 from queue 2 at time 0:551075000
+OSS: Receiving that process with PID 1321036 ran for 1920000 nanoseconds
+OSS: Recieved that process with PID 1321036 blocked until time 1:552995000 at time 0:552995000
+OSS: Dispatching process with PID 1321036 from queue 2 at time 0:552995000
+OSS: Receiving that process with PID 1321036 ran for 4000000 nanoseconds
+OSS: Process with PID 1321036 requeued to Queue 2 at time 0:556995000
+OSS: Dispatching process with PID 1321036 from queue 2 at time 0:556995000
+OSS: Receiving that process with PID 1321036 ran for 4000000 nanoseconds
+OSS: Process with PID 1321036 requeued to Queue 2 at time 0:560995000
+OSS: Dispatching process with PID 1321036 from queue 2 at time 0:560995000
+OSS: Receiving that process with PID 1321036 ran for 4000000 nanoseconds
+OSS: Process with PID 1321036 requeued to Queue 2 at time 0:564995000
+OSS: Dispatching process with PID 1321036 from queue 2 at time 0:564995000
+OSS: Receiving that process with PID 1321036 ran for 4000000 nanoseconds
+OSS: Process with PID 1321036 requeued to Queue 2 at time 0:568995000
+OSS: Dispatching process with PID 1321036 from queue 2 at time 0:568995000
+OSS: Receiving that process with PID 1321036 ran for 4000000 nanoseconds
+OSS: Process with PID 1321036 requeued to Queue 2 at time 0:572995000
+OSS: Dispatching process with PID 1321036 from queue 2 at time 0:572995000
+OSS: Receiving that process with PID 1321036 ran for 4000000 nanoseconds
+OSS: Process with PID 1321036 requeued to Queue 2 at time 0:576995000
+OSS: Dispatching process with PID 1321036 from queue 2 at time 0:576995000
+OSS: Receiving that process with PID 1321036 ran for 4000000 nanoseconds
+OSS: Process with PID 1321036 requeued to Queue 2 at time 0:580995000
+OSS: Dispatching process with PID 1321036 from queue 2 at time 0:580995000
+OSS: Receiving that process with PID 1321036 ran for 4000000 nanoseconds
+OSS: Process with PID 1321036 requeued to Queue 2 at time 0:584995000
+OSS: Dispatching process with PID 1321036 from queue 2 at time 0:584995000
+OSS: Receiving that process with PID 1321036 ran for 4000000 nanoseconds
+OSS: Process with PID 1321036 requeued to Queue 2 at time 0:588995000
+OSS: Dispatching process with PID 1321036 from queue 2 at time 0:588995000
+OSS: Receiving that process with PID 1321036 ran for 4000000 nanoseconds
+OSS: Process with PID 1321036 requeued to Queue 2 at time 0:592995000
+OSS: Dispatching process with PID 1321036 from queue 2 at time 0:592995000
+OSS: Receiving that process with PID 1321036 ran for 4000000 nanoseconds
+OSS: Process with PID 1321036 requeued to Queue 2 at time 0:596995000
+OSS: Dispatching process with PID 1321036 from queue 2 at time 0:596995000
+OSS: Receiving that process with PID 1321036 ran for 4000000 nanoseconds
+OSS: Process with PID 1321036 requeued to Queue 2 at time 0:600995000
+OSS: Dispatching process with PID 1321036 from queue 2 at time 0:600995000
+OSS: Receiving that process with PID 1321036 ran for 4000000 nanoseconds
+OSS: Process with PID 1321036 requeued to Queue 2 at time 0:604995000
+OSS: Dispatching process with PID 1321036 from queue 2 at time 0:604995000
+OSS: Receiving that process with PID 1321036 ran for 3640000 nanoseconds
+OSS: Received that process with PID 1321036 terminated at time 0:608635000
+OSS: Generating process with PID 1321037 and putting it in queue 0 at time 2:108635000
+OSS: Process with PID 1321037 was unblocked and placed into the ready queue at time 2:108645000
+OSS: Dispatching process with PID 1321037 from queue 0 at time 2:108650000
+OSS: Receiving that process with PID 1321037 ran for 1000000 nanoseconds
+OSS: Process with PID 1321037 moved from Queue 0 to Queue 1 at time 2:109650000
+OSS: Dispatching process with PID 1321037 from queue 0 at time 2:109655000
+OSS: Receiving that process with PID 1321037 ran for 100000 nanoseconds
+OSS: Received that process with PID 1321037 terminated at time 2:109755000
