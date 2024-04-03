@@ -381,6 +381,7 @@ int main(int argc, char* argv[]){
     int terminationPercent = 2;
     int blockPercent = 2;
     int timeSlice = 0;
+    int readyCount = 0; //Counts how many processes are ready to go
 
     //Statistic Variable
     double idle = 0;
@@ -399,17 +400,18 @@ int main(int argc, char* argv[]){
         if(simulCount > 0){ //Skips running if no child has been launched
             
             //Check for block queue
-            if((blockQueue -> front) != NULL && simulCount < options.simul){ //Will not add if simultaneous limit is reached
+            if((blockQueue -> front) != NULL){ //Checks to see if there is anything in block queue
                 int key = (blockQueue -> front) -> key;
                 if(((*sharedSeconds > processTable[key].eventBlockedUntilSec) || (*sharedSeconds == processTable[key].eventBlockedUntilSec)) && 
                         (*sharedNano > processTable[key].eventBlockedUntilNano)){
                 deQueue(blockQueue);
                 enQueue(q0, key);
                 incrementClock(sharedSeconds, sharedNano, 10000); //Increment for moving from block queue to ready queue
+                waitTime += 10000; //Add scheduling action time to wait time
                 fprintf(fptr, "OSS: Process with PID %d was unblocked and placed into the ready queue at time %d:%d\n", processTable[key].pid, *sharedSeconds, *sharedNano);
-                simulCount++;
+                readyCount++; //Acknowledges another process is ready to go
 
-                //STATISTICS: Block time
+                //STATISTICS: Block time: Does not add straight up 1 second because the program could increment over before it gets a chance to check
                 blockTime += ((*sharedSeconds * pow(10, 9)) + (*sharedNano)) - 
                     ((processTable[key].eventBlockedUntilSec * pow(10, 9) + processTable[key].eventBlockedUntilNano) - pow(10,9));     
 
@@ -418,25 +420,27 @@ int main(int argc, char* argv[]){
             } 
             
             //Increment for calculating next child
-            incrementClock(sharedSeconds, sharedNano, 5000); //Increment for scheduling decision
-            currentQueue = nextChild(q0, q1, q2);
             
-            if(currentQueue == 0){
-                currentChild = (q0->front)->key;
-            }
-            else if(currentQueue == 1){
-                currentChild = (q1->front)->key;
-            }
-            else if(currentQueue == 2){
-                currentChild = (q2->front)->key;
-            }
-            else{
-                printf("queue code %d\n", currentQueue);
-                perror("queue failed");
-                exit(1);
-            }
-
-                                    
+            if(readyCount > 0){
+                incrementClock(sharedSeconds, sharedNano, 5000); //Increment for scheduling decision
+                waitTime += 5000;
+                currentQueue = nextChild(q0, q1, q2);
+            
+                if(currentQueue == 0){
+                    currentChild = (q0->front)->key;
+                }
+                else if(currentQueue == 1){
+                    currentChild = (q1->front)->key;
+                }
+                else if(currentQueue == 2){
+                    currentChild = (q2->front)->key;
+                }
+                else{
+                    printf("queue code %d\n", currentQueue);
+                    perror("queue failed");
+                    exit(1);
+                }
+            }    
         }
         //Increments clock by 1000 ns if no children are launched
         else{
@@ -516,10 +520,10 @@ int main(int argc, char* argv[]){
             buff.quanta = 0;
             simulCount--;
             childrenFinishedCount++;
+            readyCount--;
         }
         //If child is blocked
         else if(buff.quanta > 0 && buff.quanta < timeSlice){
-            simulCount--;
             enQueue(blockQueue, currentChild);
             processTable[currentChild].blocked = 1;
             processTable[currentChild].eventBlockedUntilNano = (*sharedNano); //Block runs for 1000 ms
@@ -529,7 +533,7 @@ int main(int argc, char* argv[]){
             buff.mtype = 0;
             buff.intData = 0; 
             buff.quanta = 0;
-           
+            readyCount--;
             
         }
 
@@ -558,6 +562,7 @@ int main(int argc, char* argv[]){
         if(launchFlag == 0 && childrenLaunched < options.proc && simulCount < options.simul && (((*sharedSeconds) > nextIntervalSeconds || 
                 ((*sharedSeconds) == nextIntervalSeconds && (*sharedNano) > nextIntervalNano)))){
             simulCount++;
+            readyCount++;
             launchFlag++;
             nextIntervalSeconds = nextIntervalSeconds + (rand() % (options.interval + 1));
             nextIntervalNano = rand() % (int) pow(10, 9);
@@ -632,9 +637,9 @@ int main(int argc, char* argv[]){
     //Average block time 
     double averageBlockTime = blockTime / options.proc;   
 
-    printf("Average Wait Time for %d processes: %f nanoseconds\n", options.proc, averageWaitTime);
-    printf("CPU Utilization: %f\n", cpuUtilization);
-    printf("Average Block Time for %d processes: %f nanoseconds\n", options.proc, averageBlockTime);
+    printf("Average Wait Time for %d processes: %0.2f nanoseconds\n", options.proc, averageWaitTime);
+    printf("CPU Utilization: %0.2f%%\n", cpuUtilization * 100);
+    printf("Average Block Time for %d processes: %0.2f nanoseconds\n", options.proc, averageBlockTime);
 
     //Remove message queues 
     if(msgctl(msqid, IPC_RMID, NULL) == -1){
